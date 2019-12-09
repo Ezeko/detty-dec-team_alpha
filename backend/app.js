@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
+
 const bodyParser = require('body-parser');
 
 //connecting to atlas
@@ -27,10 +28,12 @@ mongoose.connect('mongodb+srv://Ezeko:roJvlMY8Lqep3SxB@cluster0-rlzyx.mongodb.ne
     
     app.use(bodyParser.json()); // change request to json
 
-    app.use((req, res, next)=>{
-       const nav = navigator.geolocation;
+    app.get('/',(req, res, next)=>{
+       
         res.status(400).json({
-            Location: nav
+            message: 'Connection OK!'
             
         })
     })
+
+    module.exports = app;
