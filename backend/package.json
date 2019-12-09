@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "express, node and mongodb code to handle backend services",
+  "main": "server.js",
+  "repository": "https://github.com/Ezeko/detty-dec-team_alpha.git",
+  "author": "Adejobi ezekiel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.14"
+  }
+}
