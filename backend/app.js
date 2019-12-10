@@ -13,7 +13,7 @@ mongoose.connect('mongodb+srv://Ezeko:roJvlMY8Lqep3SxB@cluster0-rlzyx.mongodb.ne
     })
     .catch((error)=>{
         console.log({
-            error: error
+            error
         });
     });
 
@@ -30,10 +30,18 @@ mongoose.connect('mongodb+srv://Ezeko:roJvlMY8Lqep3SxB@cluster0-rlzyx.mongodb.ne
 
     app.get('/',(req, res, next)=>{
        
+       if(res.statusCode === 400){
         res.status(400).json({
+            message: 'Bad Connection!',
+            error
+            
+        })
+       }else{
+        res.status(200).json({
             message: 'Connection OK!'
             
         })
+       }
     })
 
     module.exports = app;
