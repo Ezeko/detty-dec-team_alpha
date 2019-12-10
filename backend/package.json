@@ -8,9 +8,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "express": "^4.17.1",
     "mocha": "^6.2.2",
     "mongoose": "^5.7.14"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter-html --reporter-text  --timeout 20000 --exit"
   }
 }
