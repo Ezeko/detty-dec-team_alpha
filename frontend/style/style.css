@@ -1,0 +1,98 @@
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 100%;
+    margin: 0;
+    background: #ffffff;
+    color: #2E2665;
+    overflow-x: hidden;
+}
+
+#header {
+    background: url('https://res.cloudinary.com/taofeeq/image/upload/w_1366,h_500,c_fit/dettyDecember/812_1_nipv79.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 75vh;
+}
+
+header, section {
+    color: #2E2665;
+    font-family: 'Lato', sans-serif;
+}
+
+h4 {
+    width: 50%;
+}
+
+#headForm {
+    width: 100%;
+}
+
+#headSearch {
+    width: 50%;
+}
+
+section a {
+    color: #2E2665;
+    font-weight: bold;
+}
+
+section a:hover {
+    text-decoration: none;
+}
+
+.school {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 2em;
+}
+
+#bottomSection {
+    color: #ffffff;
+    background: #00AD50;
+}
+
+.preferences a span {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    width: 3em;
+    height: 3em;
+    padding-top: 0.6em;
+    border-radius: 100%; 
+}
+
+.preferences a span i {
+    color: #00AD50;
+}
+
+.preferences a {
+    color: #ffffff;
+    margin: 1em;
+}
+
+.preferences a:hover {
+    color: #2E2665;
+}
+
+@media screen and (max-width: 48em) {
+    h4 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    body h1 {
+        font-size: 1.5em;
+    }
+
+    body h2 {
+        font-size: 1.5em;
+    }
+
+    body h4 {
+        font-size: 1em;
+    }
+
+    body h5 {
+        font-size: 0.9em;
+    }
+}
