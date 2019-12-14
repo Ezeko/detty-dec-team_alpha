@@ -1,0 +1,27 @@
+#preferredInterests div span {
+    background: #00AD50;
+    border: 1px solid #00AD50;
+    width: 3em;
+    height: 3em;
+    padding-top: 0.6em;
+    border-radius: 100%; 
+}
+
+#preferredInterests div span i {
+    color: #ffffff;
+}
+
+#preferredInterests div {
+    color: #2E2665;
+    margin: 1em;
+}
+
+form option {
+    color: #4f4f4f;
+}
+
+form .btn {
+    color: #ffffff;
+    background: #00AD50;
+    border-radius: 5px;
+}
