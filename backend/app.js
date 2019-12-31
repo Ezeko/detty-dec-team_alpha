@@ -46,6 +46,6 @@ mongoose.connect('mongodb+srv://Ezeko:roJvlMY8Lqep3SxB@cluster0-rlzyx.mongodb.ne
        }
     })
 
-    app.get('/getschool', Routers);
+    app.use('/getschool', Routers);
 
     module.exports = app;
