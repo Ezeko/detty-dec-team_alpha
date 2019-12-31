@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
+const Routers = require('./router/routers')
+
 
 const bodyParser = require('body-parser');
 
@@ -43,5 +45,8 @@ mongoose.connect('mongodb+srv://Ezeko:roJvlMY8Lqep3SxB@cluster0-rlzyx.mongodb.ne
         })
        }
     })
+
+    app.use('/getschool', Routers);
+    app.use('/addschool', Routers);
 
     module.exports = app;
