@@ -7,6 +7,7 @@ const schoolSchema = mongoose.Schema(
         location: { type: String, required: true},
         fee: { type: Number, required: true},
         imageUrl: { type: String, required: true},
+        logoUrl: { type: String, required: true},
         standard: { type: String, required: true},
         environment: { type: String, required: true},
         schoolType: { type: String, required: true},
