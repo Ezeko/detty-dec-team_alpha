@@ -1,3 +1,13 @@
+<?php include_once('../backendphp/connect.php'); 
+
+/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['search'])){
+
+    }
+}*/
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +45,7 @@
                     <a class="nav-link" href="#">Primary / Secondary</a>
                     </li>
                 </ul>
-                <form action="" class="form-inline my-2 my-lg-0">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-inline my-2 my-lg-0" method="post">
                     <input class="form-control mr-sm-2" name="search" type="search" style="font-family:'Lato', 'Font Awesome 5 Free' !important; font-weight: 900;" placeholder="&#xf002; &nbsp; Search" aria-label="Search">
                 </form>
             </div>
