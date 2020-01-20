@@ -1,3 +1,29 @@
+<?php include_once('../backendphp/connect.php'); 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['recommended'])){
+        $standard = $_POST['standard'];
+        $location = $_POST['location'];
+        $environment = $_POST['environment'];
+        $type = $_POST['schoolType'];
+        $fee = $_POST['fees'];
+
+
+
+
+        //search with resemblance
+        $sql = "SELECT * FROM `schools` WHERE standard = '$standard' or location = '$location' or 
+        environment = '$environment' or type = '$type' or fee = '$fee'";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $num = mysqli_num_rows($query);
+
+
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +49,7 @@
     <div class="container-fluid p-0">
         <!--nav codes start here-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html"><img src="https://res.cloudinary.com/taofeeq/image/upload/v1576178817/dettyDecember/logo_gxjzq2.png" alt="logo"></a>
+            <a class="navbar-brand" href="index.php"><img src="https://res.cloudinary.com/taofeeq/image/upload/v1576178817/dettyDecember/logo_gxjzq2.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -77,40 +103,40 @@
             <div class="row my-5">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <form action="" class="mx-2">
+                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="mx-2">
                         <div class="form-group">
                             <label for="location">Location</label>
                             <select name="location" id="location" class="form-control">
-                                <option value="">Select Location</option>
-                                <option value="">Lagos</option>
-                                <option value="">Abuja</option>
-                                <option value="">Ogun</option>
+                                <option name="location" id="location" value="none">Select Location</option>
+                                <option name="location" id="location" value="lagos">Lagos</option>
+                                <option name="location" id="location" value="abuja">Abuja</option>
+                                <option name="location" id="location" value="ogun">Ogun</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="environment">Environment</label>
                             <select name="environment" id="environment" class="form-control">
-                                <option value="">Select Environment</option>
-                                <option value="">City</option>
-                                <option value="">Rural</option>
-                                <option value="">No preference</option>
+                                <option name="environment" id="environment" value="">Select Environment</option>
+                                <option name="environment" id="environment" value="city">City</option>
+                                <option name="environment" id="environment" value="rural">Rural</option>
+                                <option name="environment" id="environment" value="none">No preference</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="schoolType">School Type</label>
                             <select name="schoolType" id="schoolType" class="form-control">
-                                <option value="">Select School Type</option>
-                                <option value="">Creche / Nursery</option>
-                                <option value="">Primary / Secondary</option>
+                                <option name="schoolType" id="schoolType" value="">Select School Type</option>
+                                <option name="schoolType" id="schoolType" value="Creche/ Nursery">Creche / Nursery</option>
+                                <option name="schoolType" id="schoolType" value="primary/ secondary">Primary / Secondary</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="standard">Standard</label>
                             <select name="standard" id="standard" class="form-control">
-                                <option value="">Select Standard</option>
-                                <option value="">British Education</option>
-                                <option value="">Montessori Education</option>
-                                <option value="">No preference</option>
+                                <option name= "standard" id="standard" value="">Select Standard</option>
+                                <option name="standard" id="standard" value="British">British Education</option>
+                                <option name="standard" id="standard" value="Montessori">Montessori Education</option>
+                                <option name="standard" id="standard" value="none">No preference</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -120,7 +146,7 @@
                         <div class="form-group row mt-4">
                             <div class="col-sm-3"></div>
                             <div class="col-sm-6">
-                                <button type="submit" class="form-control btn">See recommended schools</button>
+                                <button type="submit" class="form-control btn" name="recommended">See recommended schools</button>
                             </div>
                             <div class="col-sm-3"></div>
                         </div>
@@ -128,6 +154,33 @@
                 </div>
                 <div class="col-md-3"></div>
             </div>
+                <!-- print school details here -->
+            <div class='row col-md-12 d-flex flex-row justify-content-between' id='schools'>
+                <?php 
+                //if the query doesn't match database data
+                // if num not set display nothing
+                if (!(isset($num))){
+                    echo "";
+                }else if ($num < 1){
+                    print "No match found";
+                }else{
+                    while ($row= mysqli_fetch_array($query)){
+
+                        echo "
+                        <div class='school d-flex flex-column'>
+                            <img src=".$row['image_url']." alt='school picture'>
+                            <a href='#' class='align-self-center mt-2'>
+                                <img src=".$row['logo']." alt='school logo'>".
+                                $row['school_name'] .
+                            "</a>
+                        </div>";
+                    }
+
+                } 
+                
+                ?>
+                </div>
+
         </section>
         <!--section codes end here-->
         <!--footer codes start here-->
