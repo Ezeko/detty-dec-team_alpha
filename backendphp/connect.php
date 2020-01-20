@@ -12,7 +12,7 @@ if(!$conn){
     exit;
 }
 
-
+//dbpassword
 
 
 ?>
