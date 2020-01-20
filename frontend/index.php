@@ -3,8 +3,12 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['search'])){
         $data = $_POST['search'];
-        $sql = "SELECT * FROM `schools` WHERE school_name= %$data% or location = %$data% or environment = %$data%";
+        $sql = "SELECT * FROM `schools` WHERE school_name= '%$data%' or location = '%$data%' or environment = '%$data%'";
         $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $num = mysqli_num_rows($query);
+        $row = mysqli_fetch_assoc($query);
+
+
     }
 }
 
@@ -70,7 +74,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row col-md-12 mt-4 mb-2">
                     <h5>We suggest schools that are relevant to you</h5>
                 </div>
-                <?php print $data; ?>
+                <?php 
+                //if the searched doesn't match database data
+                if ($num < 1){
+                    print "No match found";
+                }else{
+                    while ($row){
+
+                        echo "<div class='row col-md-12 d-flex flex-row justify-content-between' id='schools'>
+                        <div class='school d-flex flex-column'>
+                            <img src=".$row['image_url']." alt='school picture'>
+                            <a href='#' class='align-self-center mt-2'>
+                                <img src=".$row['logo']." alt='school logo'>
+                                $row['school_name']
+                            </a>
+                        </div>";
+                    }
+
+                } 
+                
+                ?>
                 <!--div class="row col-md-12 d-flex flex-row justify-content-between" id="schools">
                     <div class="school d-flex flex-column">
                         <img src="https://res.cloudinary.com/taofeeq/image/upload/v1576227027/dettyDecember/school_jnujxr.png" alt="school picture">
