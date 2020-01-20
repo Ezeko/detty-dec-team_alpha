@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while ($row= mysqli_fetch_array($query)){
 
                         echo "
-                        <div class='school d-flex flex-column mx-5'>
+                        <div class='school d-flex flex-column mx-4'>
                             <img src=".$row['image_url']." alt='school picture'>
                             <a href='#' class='align-self-center mt-2'>
                                 <img src=".$row['logo']." alt='school logo'>".
