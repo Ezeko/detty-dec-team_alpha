@@ -3,10 +3,11 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['search'])){
         $data = $_POST['search'];
-        $sql = "SELECT * FROM `schools` WHERE school_name= '%$data%' or location = '%$data%' or environment = '%$data%'";
+        //search with resemblance
+        $sql = "SELECT * FROM `schools` WHERE school_name like '%$data%' or location like '%$data%' or environment like '%$data%'";
         $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         $num = mysqli_num_rows($query);
-        $row = mysqli_fetch_assoc($query);
+        $row;
 
 
     }
@@ -38,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container-fluid p-0">
         <!--nav codes start here-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html"><img src="https://res.cloudinary.com/taofeeq/image/upload/v1576178817/dettyDecember/logo_gxjzq2.png" alt="logo"></a>
+            <a class="navbar-brand" href="index.php"><img src="https://res.cloudinary.com/taofeeq/image/upload/v1576178817/dettyDecember/logo_gxjzq2.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,26 +75,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row col-md-12 mt-4 mb-2">
                     <h5>We suggest schools that are relevant to you</h5>
                 </div>
+                <div class='row col-md-12 d-flex flex-row justify-content-between' id='schools'>
                 <?php 
                 //if the searched doesn't match database data
-                if ($num < 1){
+                // if num not set display nothing
+                if (!(isset($num))){
+                    echo "";
+                }else if ($num < 1){
                     print "No match found";
                 }else{
-                    while ($row){
+                    while ($row= mysqli_fetch_array($query)){
 
-                        echo "<div class='row col-md-12 d-flex flex-row justify-content-between' id='schools'>
+                        echo "
                         <div class='school d-flex flex-column'>
                             <img src=".$row['image_url']." alt='school picture'>
                             <a href='#' class='align-self-center mt-2'>
-                                <img src=".$row['logo']." alt='school logo'>
-                                $row['school_name']
-                            </a>
+                                <img src=".$row['logo']." alt='school logo'>".
+                                $row['school_name'] .
+                            "</a>
                         </div>";
                     }
 
                 } 
                 
                 ?>
+                </div>
                 <!--div class="row col-md-12 d-flex flex-row justify-content-between" id="schools">
                     <div class="school d-flex flex-column">
                         <img src="https://res.cloudinary.com/taofeeq/image/upload/v1576227027/dettyDecember/school_jnujxr.png" alt="school picture">
@@ -157,23 +163,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 d-flex flex-column justify-content-center align-items-center py-3" id="bottomSection">
                 <h4 class="text-center text-capitalize">tell us your preferences to narrow down your school search</h4>
                 <div class="row text-center col-xs-6 preferences d-flex flex-row flex-wrap justify-content-around align-items-center">
-                    <a href="desktop1.html" class="d-flex flex-column">
+                    <a href="desktop1.php" class="d-flex flex-column">
                         <span class="ml-1"><i class="fa fa-map-marker-alt fa-lg"></i></span>
                         Location
                     </a>
-                    <a href="desktop1.html" class="d-flex flex-column">
+                    <a href="desktop1.php" class="d-flex flex-column">
                         <span class="ml-3"><i class="fa fa-building fa-lg"></i></span>
                         Environment
                     </a>
-                    <a href="desktop1.html" class="d-flex flex-column">
+                    <a href="desktop1.php" class="d-flex flex-column">
                         <span class="ml-3"><i class="fa fa-graduation-cap fa-lg"></i></span>
                         School Type
                     </a>
-                    <a href="desktop1.html" class="d-flex flex-column">
+                    <a href="desktop1.php" class="d-flex flex-column">
                         <span class="ml-1"><i class="fa fa-search-plus fa-lg"></i></span>
                         Standard
                     </a>
-                    <a href="desktop1.html" class="d-flex flex-column">
+                    <a href="desktop1.php" class="d-flex flex-column">
                         <span><i class="fa fa-money-bill-alt fa-lg"></i></span>
                         Fees
                     </a>
