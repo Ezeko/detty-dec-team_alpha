@@ -1,3 +1,19 @@
+<?php include_once('../backendphp/connect.php'); 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['search'])){
+        $data = $_POST['search'];
+        $sql = "SELECT * FROM `schools` WHERE school_name= '%$data%' or location = '%$data%' or environment = '%$data%'";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        $num = mysqli_num_rows($query);
+        $row = mysqli_fetch_assoc($query);
+
+
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +51,7 @@
                     <a class="nav-link" href="#">Primary / Secondary</a>
                     </li>
                 </ul>
-                <form action="" class="form-inline my-2 my-lg-0">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-inline my-2 my-lg-0" method="post">
                     <input class="form-control mr-sm-2" name="search" type="search" style="font-family:'Lato', 'Font Awesome 5 Free' !important; font-weight: 900;" placeholder="&#xf002; &nbsp; Search" aria-label="Search">
                 </form>
             </div>
@@ -46,7 +62,7 @@
             <div class="row col-md-12 d-flex flex-column justify-content-center align-items-center" id="header">
                 <h1 class="text-center my-2">Find the perfect school for your kids and yourself</h1>
                 <h4 class="text-center my-2">Discover the creche, nursery, primary and secondary schools that are right for you and your kids</h4>
-                <form action="" class="form-inline my-2 my-lg-0 align-center d-flex justify-content-center" id="headForm">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-inline my-2 my-lg-0 align-center d-flex justify-content-center" id="headForm">
                     <input class="form-control text-center my-2" id="headSearch" name="search" type="search" style="font-family:'Lato', 'Font Awesome 5 Free' !important; font-weight: 900;" placeholder="&#xf002; &nbsp; Search for your preferred schools" aria-label="Search">
                 </form>
             </div>
@@ -58,7 +74,27 @@
                 <div class="row col-md-12 mt-4 mb-2">
                     <h5>We suggest schools that are relevant to you</h5>
                 </div>
-                <div class="row col-md-12 d-flex flex-row justify-content-between" id="schools">
+                <?php 
+                //if the searched doesn't match database data
+                if ($num < 1){
+                    print "No match found";
+                }else{
+                    while ($row){
+
+                        echo "<div class='row col-md-12 d-flex flex-row justify-content-between' id='schools'>
+                        <div class='school d-flex flex-column'>
+                            <img src=".$row['image_url']." alt='school picture'>
+                            <a href='#' class='align-self-center mt-2'>
+                                <img src=".$row['logo']." alt='school logo'>
+                                $row['school_name']
+                            </a>
+                        </div>";
+                    }
+
+                } 
+                
+                ?>
+                <!--div class="row col-md-12 d-flex flex-row justify-content-between" id="schools">
                     <div class="school d-flex flex-column">
                         <img src="https://res.cloudinary.com/taofeeq/image/upload/v1576227027/dettyDecember/school_jnujxr.png" alt="school picture">
                         <a href="#" class="align-self-center mt-2">
@@ -114,7 +150,7 @@
                             <img src="https://res.cloudinary.com/taofeeq/image/upload/v1576227027/dettyDecember/schoolLogo_s0d00e.png" alt="school logo">
                             Atlantic Hall Schools
                         </a>
-                    </div>
+                    </div!-->
                 </div>
             </div>
             <div class="row">
