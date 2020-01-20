@@ -3,7 +3,8 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['search'])){
         $data = $_POST['search'];
-
+        $sql = "SELECT * FROM `schools` WHERE school_name= %$data% or location = %$data% or environment = %$data%";
+        $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     }
 }
 
