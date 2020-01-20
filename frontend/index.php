@@ -1,10 +1,11 @@
 <?php include_once('../backendphp/connect.php'); 
 
-/*if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['search'])){
+        $data = $_POST['search'];
 
     }
-}*/
+}
 
 ?>
 
@@ -56,7 +57,7 @@
             <div class="row col-md-12 d-flex flex-column justify-content-center align-items-center" id="header">
                 <h1 class="text-center my-2">Find the perfect school for your kids and yourself</h1>
                 <h4 class="text-center my-2">Discover the creche, nursery, primary and secondary schools that are right for you and your kids</h4>
-                <form action="" class="form-inline my-2 my-lg-0 align-center d-flex justify-content-center" id="headForm">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-inline my-2 my-lg-0 align-center d-flex justify-content-center" id="headForm">
                     <input class="form-control text-center my-2" id="headSearch" name="search" type="search" style="font-family:'Lato', 'Font Awesome 5 Free' !important; font-weight: 900;" placeholder="&#xf002; &nbsp; Search for your preferred schools" aria-label="Search">
                 </form>
             </div>
@@ -68,7 +69,8 @@
                 <div class="row col-md-12 mt-4 mb-2">
                     <h5>We suggest schools that are relevant to you</h5>
                 </div>
-                <div class="row col-md-12 d-flex flex-row justify-content-between" id="schools">
+                <?php print $data; ?>
+                <!--div class="row col-md-12 d-flex flex-row justify-content-between" id="schools">
                     <div class="school d-flex flex-column">
                         <img src="https://res.cloudinary.com/taofeeq/image/upload/v1576227027/dettyDecember/school_jnujxr.png" alt="school picture">
                         <a href="#" class="align-self-center mt-2">
@@ -124,7 +126,7 @@
                             <img src="https://res.cloudinary.com/taofeeq/image/upload/v1576227027/dettyDecember/schoolLogo_s0d00e.png" alt="school logo">
                             Atlantic Hall Schools
                         </a>
-                    </div>
+                    </div!-->
                 </div>
             </div>
             <div class="row">
