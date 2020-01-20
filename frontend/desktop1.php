@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-3"></div>
             </div>
                 <!-- print school details here -->
-            <div class='row col-md-12 d-flex flex-row justify-content-between' id='schools'>
+            <div class='row col-md-12 d-flex flex-row justify-content-start' id='schools'>
                 <?php 
                 //if the query doesn't match database data
                 // if num not set display nothing
@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while ($row= mysqli_fetch_array($query)){
 
                         echo "
-                        <div class='school d-flex flex-column'>
+                        <div class='school d-flex flex-column mx-5'>
                             <img src=".$row['image_url']." alt='school picture'>
                             <a href='#' class='align-self-center mt-2'>
                                 <img src=".$row['logo']." alt='school logo'>".
