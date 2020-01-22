@@ -174,23 +174,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 d-flex flex-column justify-content-center align-items-center py-3" id="bottomSection">
                 <h4 class="text-center text-capitalize">tell us your preferences to narrow down your school search</h4>
                 <div class="row text-center col-xs-6 preferences d-flex flex-row flex-wrap justify-content-around align-items-center">
-                    <a href="desktop1.php" class="d-flex flex-column">
+                    <a href="preffered.php" class="d-flex flex-column">
                         <span class="ml-1"><i class="fa fa-map-marker-alt fa-lg"></i></span>
                         Location
                     </a>
-                    <a href="desktop1.php" class="d-flex flex-column">
+                    <a href="preffered.php" class="d-flex flex-column">
                         <span class="ml-3"><i class="fa fa-building fa-lg"></i></span>
                         Environment
                     </a>
-                    <a href="desktop1.php" class="d-flex flex-column">
+                    <a href="preffered.php" class="d-flex flex-column">
                         <span class="ml-3"><i class="fa fa-graduation-cap fa-lg"></i></span>
                         School Type
                     </a>
-                    <a href="desktop1.php" class="d-flex flex-column">
+                    <a href="preffered.php" class="d-flex flex-column">
                         <span class="ml-1"><i class="fa fa-search-plus fa-lg"></i></span>
                         Standard
                     </a>
-                    <a href="desktop1.php" class="d-flex flex-column">
+                    <a href="preffered.php" class="d-flex flex-column">
                         <span><i class="fa fa-money-bill-alt fa-lg"></i></span>
                         Fees
                     </a>
