@@ -35,6 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--link that displays icon in title-->
     <link rel="shortcut icon" href="https://res.cloudinary.com/taofeeq/image/upload/v1576179225/dettyDecember/smallLogo_iojdjf.png" 
         type="image/x-icon">
+        <style>
+            p{
+                 margin:0;
+    padding:0;
+    margin-left: 5%;
+    display: block;
+            }
+        </style>
     <!--Google fonts link for lato font family-->
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <!--Font awesome 5 link-->
@@ -155,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-3"></div>
             </div>
                 <!-- print school details here -->
-            <div class='row col-md-12 d-flex flex-row justify-content-start' id='schools'>
+            <div class='row col-md-12 d-flex flex-row justify-content-center' id='schools'>
                 <?php 
                 //if the query doesn't match database data
                 // if num not set display nothing
@@ -167,11 +175,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while ($row= mysqli_fetch_array($query)){
 
                         echo "
-                        <div class='school d-flex flex-column mx-4'>
+                         <div class='school d-flex flex-column mx-4'>
                             <img src=".$row['image_url']." alt='school picture'>
                             <a href='#' class='align-self-center mt-2'>
                                 <img src=".$row['logo']." alt='school logo'>".
-                                $row['school_name'] .
+                                $row['school_name'] ."<p style='font-size: small;' class='my-2 text-left'> <span class='font-weight-light'>Location:</span> &emsp; &nbsp;". $row['location'] ."</p><p style='font-size: small;' class='my-2  text-left'> <span class='font-weight-light'>Standard:</span> &emsp; ". $row['standard'] .
+                                        "</p><p style='font-size: small;' class='my-2 text-left'> <span class='font-weight-light'>Type:</span> &emsp; &emsp; &nbsp; &nbsp; ". $row['type'].
+                                "</p> <p style='font-size: small;' class='my-2 text-left'> <span class='font-weight-light'>School Fees:</span> &#8358;". number_format($row['fee']). "</p>".
                             "</a>
                         </div>";
                     }
