@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['search'])){
         $data = $_POST['search'];
         //search with resemblance
-        $sql = "SELECT * FROM `schools` WHERE school_name like '%$data%' or location like '%$data%' or environment like '%$data%'";
+        $sql = "SELECT * FROM `schools` WHERE school_name like '%$data%' or location like '%$data%' or environment like '%$data%' OR type like '%$data%' OR fee like '%$data%' or standard like '%$data%' ";
         $query = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         $num = mysqli_num_rows($query);
         $row;
@@ -33,6 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!--bootstrap link-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
         crossorigin="anonymous">
+        <style>
+            p{
+                 margin:0;
+    padding:0;
+    
+    margin-left: 5%;
+    display: block;
+            }
+        </style>
     <title>School Search</title>
 </head>
 <body>
@@ -72,10 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!--section codes start here-->
         <section>
             <div class="row mx-4">
-                <div class="row col-md-12 mt-4 mb-2">
+                <div class="row col-md-12 mt-4 mb-2 justify-content-center">
                     <h5>We suggest schools that are relevant to you</h5>
                 </div>
-                <div class='row col-md-12 d-flex flex-row justify-content-start' id='schools'>
+                <div class='row col-md-12 d-flex flex-row justify-content-center' id='schools'>
                 <?php 
                 //if the searched doesn't match database data
                 // if num not set display nothing
@@ -91,7 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <img src=".$row['image_url']." alt='school picture'>
                             <a href='#' class='align-self-center mt-2'>
                                 <img src=".$row['logo']." alt='school logo'>".
-                                $row['school_name'] .
+                                $row['school_name'] . "<p style='font-size: small;' class='my-2 text-left'> <span class='font-weight-light'>Location:</span> &emsp; &nbsp;". $row['location'] ."</p><p style='font-size: small;' class='my-2  text-left'> <span class='font-weight-light'>Standard:</span> &emsp; ". $row['standard'] .
+                                        "</p><p style='font-size: small;' class='my-2 text-left'> <span class='font-weight-light'>Type:</span> &emsp; &emsp; &nbsp; &nbsp;  ". $row['type'].
+                                "</p> <p style='font-size: small;' class='my-2 text-left'> <span class='font-weight-light'>School Fees:</span> &#8358;". number_format($row['fee']). "</p>".
                             "</a>
                         </div>";
                     }
