@@ -42,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     margin-left: 5%;
     display: block;
             }
+              .school:hover{
+                transform: scale(1.25);
+            }
         </style>
     <!--Google fonts link for lato font family-->
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
