@@ -41,6 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     margin-left: 5%;
     display: block;
             }
+              .school:hover{
+                transform: scale(1.25);
+            }
         </style>
     <title>School Search</title>
 </head>
